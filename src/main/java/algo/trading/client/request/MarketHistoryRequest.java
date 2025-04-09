@@ -1,25 +1,11 @@
 package algo.trading.client.request;
 
-import algo.trading.client.common.Exchange;
 import algo.trading.client.common.ResponseFormat;
 
 /** Represents a request to fetch market history data for a given financial instrument. */
 public record MarketHistoryRequest(
-    /*
-     * The symbol (ticker) of the financial instrument.
-     * This parameter is required.
-     *
-     * Example: "SBER"
-     */
-    String symbol,
-
-    /*
-     * The exchange code where the instrument is traded.
-     * This parameter is required.
-     * Possible values: [MOEX, SPBX]
-     * Example: "MOEX"
-     */
-    Exchange exchange,
+    /* Represents the trading instrument (e.g., symbol and exchange). */
+    Instrument instrument,
 
     /*
      * The time frame for the market data.

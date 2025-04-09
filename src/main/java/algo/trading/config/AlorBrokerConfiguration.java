@@ -1,8 +1,10 @@
 package algo.trading.config;
 
 import algo.trading.client.AlorAuthClient;
+import algo.trading.client.AlorExchangeOrdersClient;
 import algo.trading.client.AlorSecurityInfoClient;
 import algo.trading.service.AlorTokenStorageService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +37,19 @@ public class AlorBrokerConfiguration {
   public AlorSecurityInfoClient alorInstrumentClient(
       AlorIntegrationProperty property, RestClient restClient) {
     return new AlorSecurityInfoClient(restClient, property);
+  }
+
+  /**
+   * Configures AlorExchangeOrdersClient for interacting with Alor Broker API.
+   *
+   * @param property Integration properties including API URL.
+   * @param restClient RestClient for send HTTP request.
+   * @return A configured AlorClient.
+   */
+  @Bean
+  public AlorExchangeOrdersClient alorExchangeOrdersClient(
+      AlorIntegrationProperty property, @Qualifier("alorAuthRestClient") RestClient restClient) {
+    return new AlorExchangeOrdersClient(restClient, property);
   }
 
   /**

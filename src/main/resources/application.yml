@@ -1,13 +1,9 @@
 alor:
   integration:
     # URL for authentication (token retrieval)
-    # Set globally; can be overridden by users
     authUrl: "https://oauth.alor.ru/refresh"   # Default auth URL (overridable)
-
     # URL for API communication with Alor Broker
-    # Set globally; can be overridden by users
-    apiUrl: "https://apidev.alor.ru"   # Default API URL (overridable)
-
+    apiUrl: "https://api.alor.ru"   # Default API URL (overridable)
     # Refresh token for authentication
     # Empty by default; users set their own refresh token dynamically
-    refreshToken: ""  # Default empty (user-specific token)
+    refreshToken: ""

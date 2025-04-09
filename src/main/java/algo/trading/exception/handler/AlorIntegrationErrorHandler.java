@@ -54,9 +54,10 @@ public class AlorIntegrationErrorHandler implements ResponseErrorHandler {
     HttpStatusCode statusCode = response.getStatusCode();
 
     if (statusCode.is4xxClientError()) {
-      if (statusCode.value() == HttpStatus.UNAUTHORIZED.value()
-          || statusCode.value() == HttpStatus.FORBIDDEN.value()) {
+      if (statusCode.value() == HttpStatus.UNAUTHORIZED.value()) {
         throw new AlorAuthException("Authorization failed (401). Please check your token.");
+      } else if (statusCode.value() == HttpStatus.FORBIDDEN.value()) {
+        throw new AlorAuthException("Permission failed (403). Please check your permission.");
       } else if (statusCode.value() == HttpStatus.BAD_REQUEST.value()) {
         throw new AlorDataValidationException(
             "Invalid request data (400). Please check the request parameters.");

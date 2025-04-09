@@ -1,5 +1,6 @@
 package algo.trading.client;
 
+import static algo.trading.client.common.AlorApiPath.GET_MARKET_HISTORY;
 import static algo.trading.client.common.AlorQueryParam.COUNT_BACK;
 import static algo.trading.client.common.AlorQueryParam.EXCHANGE;
 import static algo.trading.client.common.AlorQueryParam.FORMAT;
@@ -22,7 +23,6 @@ import org.springframework.web.client.RestClient;
  * market history, trades, quotes, and other instrument-related information.
  */
 public class AlorSecurityInfoClient {
-  private static final String HISTORY_PATH = "/md/v2/history";
   private final RestClient alorAuthRestClient;
   private final AlorIntegrationProperty alorIntegrationProperty;
 
@@ -46,9 +46,9 @@ public class AlorSecurityInfoClient {
    */
   public MarketHistoryResponse getMarketHistory(MarketHistoryRequest request) {
     URI uri =
-        AlorRequestBuilder.from(alorIntegrationProperty.getApiUrl(), HISTORY_PATH)
-            .with(SYMBOL, request.symbol())
-            .with(EXCHANGE, request.exchange())
+        AlorRequestBuilder.from(alorIntegrationProperty.getApiUrl(), GET_MARKET_HISTORY.path())
+            .with(SYMBOL, request.instrument().symbol())
+            .with(EXCHANGE, request.instrument().exchange())
             .with(TF, request.tf())
             .with(FROM, request.from())
             .with(TO, request.to())
