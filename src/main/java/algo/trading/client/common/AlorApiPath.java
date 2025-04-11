@@ -9,7 +9,8 @@ public enum AlorApiPath {
   SECURITY_INFO_BASE("/md/v2"),
   GET_MARKET_HISTORY(SECURITY_INFO_BASE.path() + "/history"),
   REFRESH_TOKEN("/refresh"),
-  CREATE_MARKET_ORDER(EXCHANGE_ORDER_BASE.path() + "/market");
+  CREATE_MARKET_ORDER(EXCHANGE_ORDER_BASE.path() + "/market"),
+  CREATE_LIMIT_ORDER(EXCHANGE_ORDER_BASE.path() + "/limit");
 
   private final String path;
 

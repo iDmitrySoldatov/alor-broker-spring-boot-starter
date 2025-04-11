@@ -4,7 +4,7 @@ package algo.trading.client.response;
  * Represents the response of a successful market order creation. Contains a confirmation message
  * and the unique order ID.
  */
-public record CreateMarketOrderResponse(
+public record CreateOrderResponse(
     /*
      * Text message of the response.
      * Example: "success"
