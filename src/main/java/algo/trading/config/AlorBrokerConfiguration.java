@@ -1,6 +1,7 @@
 package algo.trading.config;
 
 import algo.trading.client.AlorAuthClient;
+import algo.trading.client.AlorConditionalOrdersClient;
 import algo.trading.client.AlorExchangeOrdersClient;
 import algo.trading.client.AlorSecurityInfoClient;
 import algo.trading.service.AlorTokenStorageService;
@@ -50,6 +51,19 @@ public class AlorBrokerConfiguration {
   public AlorExchangeOrdersClient alorExchangeOrdersClient(
       AlorIntegrationProperty property, @Qualifier("alorAuthRestClient") RestClient restClient) {
     return new AlorExchangeOrdersClient(restClient, property);
+  }
+
+  /**
+   * Configures AlorConditionalOrdersClient for interacting with Alor Broker API.
+   *
+   * @param property Integration properties including API URL.
+   * @param restClient RestClient for send HTTP request.
+   * @return A configured AlorClient.
+   */
+  @Bean
+  public AlorConditionalOrdersClient alorConditionalOrdersClient(
+      AlorIntegrationProperty property, @Qualifier("alorAuthRestClient") RestClient restClient) {
+    return new AlorConditionalOrdersClient(restClient, property);
   }
 
   /**
