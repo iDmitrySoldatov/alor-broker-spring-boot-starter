@@ -8,7 +8,6 @@ import algo.trading.exception.AlorUnknownException;
 import java.io.IOException;
 import java.net.URI;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.ResponseErrorHandler;
@@ -52,25 +51,23 @@ public class AlorIntegrationErrorHandler implements ResponseErrorHandler {
   public void handleError(URI url, HttpMethod method, ClientHttpResponse response)
       throws IOException {
     HttpStatusCode statusCode = response.getStatusCode();
+    String responseBody = new String(response.getBody().readAllBytes());
+    int status = statusCode.value();
+    String message = String.format("HTTP %d Error. Response: %s", status, responseBody);
 
-    if (statusCode.is4xxClientError()) {
-      if (statusCode.value() == HttpStatus.UNAUTHORIZED.value()) {
-        throw new AlorAuthException("Authorization failed (401). Please check your token.");
-      } else if (statusCode.value() == HttpStatus.FORBIDDEN.value()) {
-        throw new AlorAuthException("Permission failed (403). Please check your permission.");
-      } else if (statusCode.value() == HttpStatus.BAD_REQUEST.value()) {
-        throw new AlorDataValidationException(
-            "Invalid request data (400). Please check the request parameters.");
-      } else {
-        throw new AlorClientException(
-            "Client error (" + statusCode.value() + ") occurred: " + response.getStatusText());
+    switch (status) {
+      case 400 -> throw new AlorDataValidationException("Bad request (400). " + message);
+      case 401 -> throw new AlorAuthException("Unauthorized (401). " + message);
+      case 403 -> throw new AlorAuthException("Forbidden (403). " + message);
+      default -> {
+        if (statusCode.is4xxClientError()) {
+          throw new AlorClientException("Client error. " + message);
+        } else if (statusCode.is5xxServerError()) {
+          throw new AlorServerException("Server error. " + message);
+        } else {
+          throw new AlorUnknownException("Unknown error. " + message);
+        }
       }
-    } else if (statusCode.is5xxServerError()) {
-      throw new AlorServerException(
-          "Server error (" + statusCode.value() + "). Please try again later.");
-    } else {
-      throw new AlorUnknownException(
-          "An unknown error occurred with status code: " + statusCode.value());
     }
   }
 }
