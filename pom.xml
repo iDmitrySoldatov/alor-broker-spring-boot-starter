@@ -39,7 +39,7 @@
     </dependencies>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/iDmitrySoldatov/alor-broker-spring-boot-starter
+        <developerConnection>scm:git:https://github.com/iDmitrySoldatov/alor-broker-spring-boot-starter.git
         </developerConnection>
         <tag>HEAD</tag>
     </scm>
