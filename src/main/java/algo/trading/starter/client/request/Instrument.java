@@ -1,14 +1,19 @@
 package algo.trading.starter.client.request;
 
 import algo.trading.starter.client.common.Exchange;
+import lombok.Builder;
+import lombok.Data;
 
-/** Represents the trading instrument (e.g., symbol and exchange). */
-public record Instrument(
-    /* Ticker symbol of the instrument. Example: "SBER" */
-    String symbol,
+/** Represents the trading instrument (e.g.; symbol and exchange). */
+@Data
+@Builder
+public class Instrument {
+  /* Ticker symbol of the instrument. Example: "SBER" */
+  private String symbol;
 
-    /* Exchange code: MOEX or SPBX. */
-    Exchange exchange,
+  /* Exchange code: MOEX or SPBX. */
+  private Exchange exchange;
 
-    /* Trading board code. Example: "TQBR" */
-    String instrumentGroup) {}
+  /* Trading board code. Example: "TQBR" */
+  private String instrumentGroup;
+}

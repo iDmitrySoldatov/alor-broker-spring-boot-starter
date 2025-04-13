@@ -2,26 +2,31 @@ package algo.trading.starter.client.request;
 
 import algo.trading.starter.client.common.Side;
 import algo.trading.starter.client.common.TimeInForce;
+import lombok.Builder;
+import lombok.Data;
 
 /** Request payload for creating a market order. */
-public record CreateMarketOrderRequest(
-    /* Order side: buy or sell. */
-    Side side,
+@Data
+@Builder
+public class CreateMarketOrderRequest {
+  /* Order side: buy or sell. */
+  private Side side;
 
-    /* Quantity in lots. Example: 1 */
-    int quantity,
+  /* Quantity in lots. Example: 1 */
+  private int quantity;
 
-    /* Instrument information including symbol, exchange, and group. */
-    Instrument instrument,
+  /* Instrument information including symbol; exchange; and group. */
+  private Instrument instrument;
 
-    /* Custom comment for the order. */
-    String comment,
+  /* Custom comment for the order. */
+  private String comment;
 
-    /* User info including portfolio ID. */
-    User user,
+  /* User info including portfolio ID. */
+  private User user;
 
-    /* Order validity type. Default: oneday. */
-    TimeInForce timeInForce,
+  /* Order validity type. Default: oneday. */
+  private TimeInForce timeInForce;
 
-    /* Allow margin trading. Must be true for uncovered positions. */
-    boolean allowMargin) {}
+  /* Allow margin trading. Must be true for uncovered positions. */
+  private boolean allowMargin;
+}
