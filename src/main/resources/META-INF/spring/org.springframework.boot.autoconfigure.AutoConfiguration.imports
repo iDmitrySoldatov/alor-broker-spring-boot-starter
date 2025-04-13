@@ -1,2 +1,2 @@
-algo.trading.config.AlorBrokerConfiguration
-algo.trading.config.RestClientAutoConfiguration
+algo.trading.starter.config.AlorBrokerConfiguration
+algo.trading.starter.config.RestClientAutoConfiguration
