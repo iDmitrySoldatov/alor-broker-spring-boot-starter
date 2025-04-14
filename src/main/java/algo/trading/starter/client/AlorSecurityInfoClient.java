@@ -49,15 +49,15 @@ public class AlorSecurityInfoClient {
   public MarketHistoryResponse getMarketHistory(MarketHistoryRequest request) {
     URI uri =
         AlorRequestBuilder.from(alorIntegrationProperty.getApiUrl(), GET_MARKET_HISTORY.path())
-            .with(SYMBOL, request.instrument().symbol())
-            .with(EXCHANGE, request.instrument().exchange())
-            .with(TF, request.tf())
-            .with(FROM, request.from())
-            .with(TO, request.to())
-            .with(COUNT_BACK, request.countBack())
-            .with(UNTRADED, request.untraded())
-            .with(SPLIT_ADJUST, request.splitAdjust())
-            .with(FORMAT, request.format())
+            .with(SYMBOL, request.getInstrument().getSymbol())
+            .with(EXCHANGE, request.getInstrument().getExchange())
+            .with(TF, request.getTf())
+            .with(FROM, request.getFrom())
+            .with(TO, request.getTo())
+            .with(COUNT_BACK, request.getCountBack())
+            .with(UNTRADED, request.getUntraded())
+            .with(SPLIT_ADJUST, request.getSplitAdjust())
+            .with(FORMAT, request.getFormat())
             .build();
 
     return alorRestClient.get().uri(uri).retrieve().body(MarketHistoryResponse.class);
