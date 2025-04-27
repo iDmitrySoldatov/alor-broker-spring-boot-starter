@@ -11,7 +11,8 @@ public enum AlorApiPath {
   REFRESH_TOKEN("/refresh"),
   CREATE_MARKET_ORDER(EXCHANGE_ORDER_BASE.path() + "/market"),
   CREATE_LIMIT_ORDER(EXCHANGE_ORDER_BASE.path() + "/limit"),
-  CREATE_STOP_ORDER(EXCHANGE_ORDER_BASE.path() + "/stop");
+  CREATE_STOP_ORDER(EXCHANGE_ORDER_BASE.path() + "/stop"),
+  INSTRUMENT_INFO(SECURITY_INFO_BASE.path() + "/Securities/{0}/{1}");
 
   private final String path;
 

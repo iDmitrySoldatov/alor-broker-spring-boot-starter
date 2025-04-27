@@ -1,6 +1,7 @@
 package algo.trading.starter.client.request;
 
 import algo.trading.starter.client.common.Exchange;
+import algo.trading.starter.client.common.InstrumentGroup;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,5 +16,5 @@ public class Instrument {
   private Exchange exchange;
 
   /* Trading board code. Example: "TQBR" */
-  private String instrumentGroup;
+  private InstrumentGroup instrumentGroup;
 }

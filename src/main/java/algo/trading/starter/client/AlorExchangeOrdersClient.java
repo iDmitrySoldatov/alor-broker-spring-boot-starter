@@ -13,6 +13,8 @@ import org.springframework.web.client.RestClient;
 
 /** Client for placing exchange orders via Alor trading API. */
 public class AlorExchangeOrdersClient {
+  private static final String X_REQID = "X-REQID";
+
   private final RestClient alorAuthRestClient;
   private final AlorIntegrationProperty alorIntegrationProperty;
 
@@ -43,7 +45,7 @@ public class AlorExchangeOrdersClient {
     return alorAuthRestClient
         .post()
         .uri(baseUrl + CREATE_MARKET_ORDER.path())
-        .header("X-REQID", requestId)
+        .header(X_REQID, requestId)
         .contentType(MediaType.APPLICATION_JSON)
         .body(request)
         .retrieve()
@@ -65,7 +67,7 @@ public class AlorExchangeOrdersClient {
     return alorAuthRestClient
         .post()
         .uri(baseUrl + CREATE_LIMIT_ORDER.path())
-        .header("X-REQID", requestId)
+        .header(X_REQID, requestId)
         .contentType(MediaType.APPLICATION_JSON)
         .body(request)
         .retrieve()
