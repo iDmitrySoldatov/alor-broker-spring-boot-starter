@@ -18,7 +18,7 @@ public class AlorInstrumentInfoClient {
   private final AlorIntegrationProperty alorIntegrationProperty;
 
   /**
-   * Initializes the exchange orders client with required dependencies.
+   * Initializes the instrument info client with required dependencies.
    *
    * @param alorAuthRestClient authenticated HTTP client for Alor API
    * @param alorIntegrationProperty configuration properties (e.g. API base URL, fallback values)
