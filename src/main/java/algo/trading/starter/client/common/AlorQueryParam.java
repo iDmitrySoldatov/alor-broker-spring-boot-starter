@@ -14,7 +14,9 @@ public enum AlorQueryParam {
   COUNT_BACK("countBack"),
   UNTRADED("untraded"),
   SPLIT_ADJUST("splitAdjust"),
-  FORMAT("format");
+  FORMAT("format"),
+  INSTRUMENT_GROUP("instrumentGroup"),
+  JSON_RESPONSE("jsonResponse");
 
   private final String param;
 
