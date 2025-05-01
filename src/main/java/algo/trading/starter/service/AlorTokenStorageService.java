@@ -2,9 +2,6 @@ package algo.trading.starter.service;
 
 import algo.trading.starter.client.AlorAuthClient;
 import algo.trading.starter.config.AlorIntegrationProperty;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.annotation.PostConstruct;
 import java.util.concurrent.atomic.AtomicReference;
 
 /** Service for managing the access token required for interacting with the Alor Broker API. */
@@ -38,19 +35,8 @@ public class AlorTokenStorageService {
    * Refreshes the current access token by using the refresh token. This method makes a call to the
    * Alor client to fetch a new access token using the stored refresh token.
    */
-  @PostConstruct
   public void refreshAccessToken() {
-    String json = alorAuthClient.getAccessToken(property.getRefreshToken());
-    accessToken.set(extractTokenFromJson(json));
-  }
-
-  private String extractTokenFromJson(String json) {
-    try {
-      ObjectMapper objectMapper = new ObjectMapper();
-      JsonNode rootNode = objectMapper.readTree(json);
-      return rootNode.get(ACCESS_TOKEN_FIELD).asText();
-    } catch (Exception e) {
-      throw new RuntimeException("Failed to parse token JSON", e);
-    }
+    String token = alorAuthClient.getAccessToken(property.getRefreshToken()).getAccessToken();
+    accessToken.set(token);
   }
 }

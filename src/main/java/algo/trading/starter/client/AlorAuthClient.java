@@ -1,10 +1,9 @@
 package algo.trading.starter.client;
 
-import static algo.trading.starter.client.common.AlorQueryParam.TOKEN;
 
-import algo.trading.starter.client.common.AlorRequestBuilder;
+import algo.trading.starter.client.request.TokenRequest;
+import algo.trading.starter.client.response.AccessTokenResponse;
 import algo.trading.starter.config.AlorIntegrationProperty;
-import java.net.URI;
 import org.springframework.web.client.RestClient;
 
 /** Client responsible for obtaining an access token from Alor using a refresh token. */
@@ -29,8 +28,12 @@ public class AlorAuthClient {
    * @param refreshToken the refresh token to exchange
    * @return access token as a string
    */
-  public String getAccessToken(String refreshToken) {
-    URI uri = AlorRequestBuilder.from(property.getAuthUrl(), "").with(TOKEN, refreshToken).build();
-    return restClient.post().uri(uri).retrieve().body(String.class);
+  public AccessTokenResponse getAccessToken(String refreshToken) {
+    return restClient
+        .post()
+        .uri(property.getAuthUrl())
+        .body(TokenRequest.builder().token(refreshToken).build())
+        .retrieve()
+        .body(AccessTokenResponse.class);
   }
 }
