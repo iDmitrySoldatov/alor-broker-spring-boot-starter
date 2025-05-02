@@ -10,7 +10,7 @@
 
     <groupId>algo.trading</groupId>
     <artifactId>alor-broker-spring-boot-starter</artifactId>
-    <version>0.6</version>
+    <version>0.7-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -43,7 +43,7 @@
     <scm>
         <developerConnection>scm:git:https://github.com/iDmitrySoldatov/alor-broker-spring-boot-starter.git
         </developerConnection>
-        <tag>alor-broker-spring-boot-starter-0.6</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
