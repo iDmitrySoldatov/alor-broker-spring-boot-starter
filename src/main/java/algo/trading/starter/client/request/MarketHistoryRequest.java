@@ -1,12 +1,16 @@
 package algo.trading.starter.client.request;
 
 import algo.trading.starter.client.common.ResponseFormat;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /** Represents a request to fetch market history data for a given financial instrument. */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MarketHistoryRequest {
   /* Represents the trading instrument (e.g., symbol and exchange). */
   private Instrument instrument;

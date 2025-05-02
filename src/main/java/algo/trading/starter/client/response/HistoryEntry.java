@@ -1,8 +1,11 @@
 package algo.trading.starter.client.response;
 
 import java.math.BigDecimal;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Represents a single entry of market history data for a specific time period. This record contains
@@ -10,6 +13,8 @@ import lombok.Data;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class HistoryEntry {
   /*
    * The timestamp (in Unix time format) representing the start of the period (UTC).

@@ -6,12 +6,17 @@ import algo.trading.starter.client.common.InstrumentType;
 import algo.trading.starter.client.common.MarketCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /** Response with parameters of instrument. */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class InstrumentInfoResponse {
   /** Symbol of trading instrument. */
   private String symbol;

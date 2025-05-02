@@ -1,8 +1,11 @@
 package algo.trading.starter.client.response;
 
 import java.util.List;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Represents a response containing market history data for a given financial instrument. This class
@@ -11,6 +14,8 @@ import lombok.Data;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MarketHistoryResponse {
   /*
    * List of market history entries, each representing a time period with open, close, high,

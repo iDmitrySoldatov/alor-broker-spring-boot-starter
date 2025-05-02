@@ -3,12 +3,17 @@ package algo.trading.starter.client.request;
 import algo.trading.starter.client.common.Side;
 import algo.trading.starter.client.common.StopCondition;
 import java.math.BigDecimal;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /** Request payload for creating a stop order. */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CreateStopOrderRequest {
   /* Order side: buy or sell. */
   private Side side;
