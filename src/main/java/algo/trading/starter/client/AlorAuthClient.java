@@ -1,6 +1,5 @@
 package algo.trading.starter.client;
 
-
 import algo.trading.starter.client.request.TokenRequest;
 import algo.trading.starter.client.response.AccessTokenResponse;
 import algo.trading.starter.config.AlorIntegrationProperty;
