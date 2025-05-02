@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MarketHistoryRequest {
   /* Represents the trading instrument (e.g., symbol and exchange). */
-  private Instrument instrument;
+  private AlorInstrument instrument;
 
   /*
    * The time frame for the market data.

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class AlorUser {
   /* Unique portfolio ID. Example: "D39004" */
   String portfolio;
 }

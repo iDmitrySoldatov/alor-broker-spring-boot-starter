@@ -30,10 +30,10 @@ public class CreateStopOrderRequest {
   private int quantity;
 
   /* Instrument information including symbol; exchange; and group. */
-  private Instrument instrument;
+  private AlorInstrument instrument;
 
   /* User info including portfolio ID. */
-  private User user;
+  private AlorUser user;
 
   /* Allow margin trading. Must be true for uncovered positions. */
   private boolean allowMargin;

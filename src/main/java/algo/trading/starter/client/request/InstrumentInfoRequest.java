@@ -1,6 +1,6 @@
 package algo.trading.starter.client.request;
 
-import algo.trading.starter.client.common.Exchange;
+import algo.trading.starter.client.common.AlorExchange;
 import algo.trading.starter.client.common.InstrumentGroup;
 import algo.trading.starter.client.common.ResponseFormat;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class InstrumentInfoRequest {
   /** Stock exchange. */
-  private Exchange exchange;
+  private AlorExchange exchange;
 
   /** Symbol of trading instrument. */
   private String symbol;
