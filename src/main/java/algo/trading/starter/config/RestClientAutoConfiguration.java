@@ -34,7 +34,7 @@ public class RestClientAutoConfiguration {
    * @return configured authenticated RestClient for Alor
    */
   @Bean(name = "alorAuthRestClient")
-  @ConditionalOnProperty("refreshToken")
+  @ConditionalOnProperty("alor.integration.refreshToken")
   public RestClient alorAuthRestClient(AlorTokenStorageService tokenService) {
     return RestClient.builder()
         .requestInterceptor(createAuthInterceptor(tokenService))

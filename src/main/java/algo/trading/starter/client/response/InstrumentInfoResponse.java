@@ -6,7 +6,6 @@ import algo.trading.starter.client.common.InstrumentType;
 import algo.trading.starter.client.common.MarketCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,9 +40,9 @@ public class InstrumentInfoResponse {
   private BigDecimal lotSize;
 
   /**
-   * For the stock market - the nominal value of a single financial instrument.
-   * For the futures market - the size of one lot.
-   * For the forex market - the lot size of currency for which the price is quoted
+   * For the stock market - the nominal value of a single financial instrument. For the futures
+   * market - the size of one lot. For the forex market - the lot size of currency for which the
+   * price is quoted
    */
   @JsonProperty("facevalue")
   private BigDecimal faceValue;

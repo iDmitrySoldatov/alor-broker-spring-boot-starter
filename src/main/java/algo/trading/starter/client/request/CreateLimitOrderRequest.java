@@ -3,7 +3,6 @@ package algo.trading.starter.client.request;
 import algo.trading.starter.client.common.Side;
 import algo.trading.starter.client.common.TimeInForce;
 import java.math.BigDecimal;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
