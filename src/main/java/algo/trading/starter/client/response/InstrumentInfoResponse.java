@@ -1,7 +1,7 @@
 package algo.trading.starter.client.response;
 
-import algo.trading.starter.client.common.Currency;
-import algo.trading.starter.client.common.Exchange;
+import algo.trading.starter.client.common.AlorCurrency;
+import algo.trading.starter.client.common.AlorExchange;
 import algo.trading.starter.client.common.InstrumentType;
 import algo.trading.starter.client.common.MarketCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,7 +27,7 @@ public class InstrumentInfoResponse {
   private String description;
 
   /** Stock exchange. */
-  private Exchange exchange;
+  private AlorExchange exchange;
 
   /** Market code. */
   private MarketCode market;
@@ -51,6 +51,6 @@ public class InstrumentInfoResponse {
   @JsonProperty("minstep")
   private BigDecimal minStep;
 
-  /** Currency of instrument. */
-  private Currency currency;
+  /** AlorCurrency of instrument. */
+  private AlorCurrency currency;
 }

@@ -20,13 +20,13 @@ public class CreateMarketOrderRequest {
   private int quantity;
 
   /* Instrument information including symbol; exchange; and group. */
-  private Instrument instrument;
+  private AlorInstrument instrument;
 
   /* Custom comment for the order. */
   private String comment;
 
   /* User info including portfolio ID. */
-  private User user;
+  private AlorUser user;
 
   /* Order validity type. Default: oneday. */
   private TimeInForce timeInForce;

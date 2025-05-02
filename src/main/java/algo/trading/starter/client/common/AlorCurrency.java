@@ -1,7 +1,7 @@
 package algo.trading.starter.client.common;
 
-/** Currency codes. */
-public enum Currency {
+/** AlorCurrency codes. */
+public enum AlorCurrency {
   RUB,
   USD,
   EUR,

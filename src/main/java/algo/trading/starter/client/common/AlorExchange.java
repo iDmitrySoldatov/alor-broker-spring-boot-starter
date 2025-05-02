@@ -1,13 +1,13 @@
 package algo.trading.starter.client.common;
 
 /** Enum representing the possible exchanges. */
-public enum Exchange {
+public enum AlorExchange {
   MOEX("MOEX"),
   SPBX("SPBX");
 
   private final String value;
 
-  Exchange(String value) {
+  AlorExchange(String value) {
     this.value = value;
   }
 
