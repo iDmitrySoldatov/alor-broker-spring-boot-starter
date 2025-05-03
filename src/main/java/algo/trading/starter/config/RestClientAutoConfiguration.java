@@ -2,6 +2,7 @@ package algo.trading.starter.config;
 
 import algo.trading.starter.exception.handler.AlorIntegrationErrorHandler;
 import algo.trading.starter.service.AlorTokenStorageService;
+import algo.trading.starter.service.RefreshTokenProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,23 +35,23 @@ public class RestClientAutoConfiguration {
    * @return configured authenticated RestClient for Alor
    */
   @Bean(name = "alorAuthRestClient")
-  @ConditionalOnProperty("alor.integration.refreshToken")
-  public RestClient alorAuthRestClient(AlorTokenStorageService tokenService) {
+  public RestClient alorAuthRestClient(AlorTokenStorageService tokenService,
+                                       RefreshTokenProvider refreshTokenProvider) {
     return RestClient.builder()
-        .requestInterceptor(createAuthInterceptor(tokenService))
+        .requestInterceptor(createAuthInterceptor(tokenService, refreshTokenProvider))
         .defaultStatusHandler(new AlorIntegrationErrorHandler())
         .build();
   }
 
   private ClientHttpRequestInterceptor createAuthInterceptor(
-      AlorTokenStorageService alorTokenStorageService) {
+      AlorTokenStorageService alorTokenStorageService, RefreshTokenProvider refreshTokenProvider) {
     return ((request, body, execution) -> {
       String token = alorTokenStorageService.getAccessToken();
       request.getHeaders().set(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + token);
 
       ClientHttpResponse response = execution.execute(request, body);
       if (response.getStatusCode() == HttpStatus.UNAUTHORIZED) {
-        alorTokenStorageService.refreshAccessToken();
+        alorTokenStorageService.refreshAccessToken(refreshTokenProvider.getRefreshToken());
         String refreshedToken = alorTokenStorageService.getAccessToken();
         request.getHeaders().set(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + refreshedToken);
         response = execution.execute(request, body);

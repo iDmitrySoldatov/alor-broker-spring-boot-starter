@@ -25,7 +25,6 @@ public class AlorBrokerConfiguration {
    * @return A configured AlorClient.
    */
   @Bean
-  @ConditionalOnProperty("alor.integration.refreshToken")
   public AlorAuthClient authAlorClient(
       AlorIntegrationProperty property, RestClient alorRestClient) {
     return new AlorAuthClient(property, alorRestClient);
@@ -52,7 +51,6 @@ public class AlorBrokerConfiguration {
    * @return A configured AlorClient.
    */
   @Bean
-  @ConditionalOnProperty("alor.integration.refreshToken")
   public AlorExchangeOrdersClient alorExchangeOrdersClient(
       AlorIntegrationProperty property, @Qualifier("alorAuthRestClient") RestClient restClient) {
     return new AlorExchangeOrdersClient(restClient, property);
@@ -66,7 +64,6 @@ public class AlorBrokerConfiguration {
    * @return A configured AlorClient.
    */
   @Bean
-  @ConditionalOnProperty("alor.integration.refreshToken")
   public AlorConditionalOrdersClient alorConditionalOrdersClient(
       AlorIntegrationProperty property, @Qualifier("alorAuthRestClient") RestClient restClient) {
     return new AlorConditionalOrdersClient(restClient, property);
@@ -76,14 +73,12 @@ public class AlorBrokerConfiguration {
    * Configures AlorTokenStorageService for managing access tokens and authentication.
    *
    * @param alorAuthClient AuthorizationAlorClient for interacting with the Alor Broker API.
-   * @param property Integration properties including refreshToken.
    * @return A configured AlorTokenService.
    */
   @Bean
-  @ConditionalOnProperty("alor.integration.refreshToken")
   public AlorTokenStorageService alorTokenStorageService(
-      AlorAuthClient alorAuthClient, AlorIntegrationProperty property) {
-    return new AlorTokenStorageService(alorAuthClient, property);
+      AlorAuthClient alorAuthClient) {
+    return new AlorTokenStorageService(alorAuthClient);
   }
 
   /**
@@ -94,7 +89,6 @@ public class AlorBrokerConfiguration {
    * @return A configured AlorClient.
    */
   @Bean
-  @ConditionalOnProperty("alor.integration.refreshToken")
   public AlorInstrumentInfoClient alorInstrumentInfoClient(
       AlorIntegrationProperty property, @Qualifier("alorAuthRestClient") RestClient restClient) {
     return new AlorInstrumentInfoClient(restClient, property);
