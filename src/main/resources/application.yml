@@ -4,6 +4,3 @@ alor:
     authUrl: "https://oauth.alor.ru/refresh"   # Default auth URL (overridable)
     # URL for API communication with Alor Broker
     apiUrl: "https://api.alor.ru"   # Default API URL (overridable)
-    # Refresh token for authentication
-    # Empty by default; users set their own refresh token dynamically
-    refreshToken: ""

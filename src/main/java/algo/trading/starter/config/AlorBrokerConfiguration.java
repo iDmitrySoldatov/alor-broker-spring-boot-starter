@@ -76,14 +76,13 @@ public class AlorBrokerConfiguration {
    * Configures AlorTokenStorageService for managing access tokens and authentication.
    *
    * @param alorAuthClient AuthorizationAlorClient for interacting with the Alor Broker API.
-   * @param property Integration properties including refreshToken.
    * @return A configured AlorTokenService.
    */
   @Bean
   @ConditionalOnProperty("alor.integration.refreshToken")
   public AlorTokenStorageService alorTokenStorageService(
-      AlorAuthClient alorAuthClient, AlorIntegrationProperty property) {
-    return new AlorTokenStorageService(alorAuthClient, property);
+      AlorAuthClient alorAuthClient) {
+    return new AlorTokenStorageService(alorAuthClient);
   }
 
   /**
