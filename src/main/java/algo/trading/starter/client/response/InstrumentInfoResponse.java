@@ -33,7 +33,7 @@ public class InstrumentInfoResponse {
   private MarketCode market;
 
   /** Instrument type. */
-  private InstrumentType type;
+  private String type;
 
   /** Size of one lot. */
   @JsonProperty("lotsize")
