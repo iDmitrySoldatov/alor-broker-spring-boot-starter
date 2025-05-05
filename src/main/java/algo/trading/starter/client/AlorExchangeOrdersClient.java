@@ -21,7 +21,7 @@ public class AlorExchangeOrdersClient {
   /**
    * Initializes the exchange orders client with required dependencies.
    *
-   * @param restClientProvider authenticated HTTP client for Alor API
+   * @param restClientProvider provider of authenticated HTTP client for Alor API
    * @param alorIntegrationProperty configuration properties (e.g. API base URL, fallback values)
    */
   public AlorExchangeOrdersClient(

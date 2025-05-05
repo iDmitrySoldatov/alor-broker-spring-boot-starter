@@ -17,7 +17,7 @@ public class AlorConditionalOrdersClient {
   /**
    * Initializes the conditional orders client with required dependencies.
    *
-   * @param restClientProvider authenticated HTTP client for Alor API
+   * @param restClientProvider provider of authenticated HTTP client for Alor API
    * @param alorIntegrationProperty configuration properties (e.g. API base URL)
    */
   public AlorConditionalOrdersClient(

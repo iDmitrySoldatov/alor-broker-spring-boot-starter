@@ -32,7 +32,7 @@ public class AlorBrokerConfiguration {
    * Configures AlorSecurityInfoClient for interacting with Alor Broker API.
    *
    * @param property Integration properties including API URL.
-   * @param restClientProvider RestClient for send HTTP request.
+   * @param restClientProvider provider of restClient for send HTTP request.
    * @return A configured AlorClient.
    */
   @Bean
@@ -45,7 +45,7 @@ public class AlorBrokerConfiguration {
    * Configures AlorExchangeOrdersClient for interacting with Alor Broker API.
    *
    * @param property Integration properties including API URL.
-   * @param restClientProvider RestClient for send HTTP request.
+   * @param restClientProvider provider of restClient for send HTTP request.
    * @return A configured AlorClient.
    */
   @Bean
@@ -58,7 +58,7 @@ public class AlorBrokerConfiguration {
    * Configures AlorConditionalOrdersClient for interacting with Alor Broker API.
    *
    * @param property Integration properties including API URL.
-   * @param restClientProvider RestClient for send HTTP request.
+   * @param restClientProvider provider of restClient for send HTTP request.
    * @return A configured AlorClient.
    */
   @Bean
@@ -71,7 +71,7 @@ public class AlorBrokerConfiguration {
    * Configures AlorInstrumentInfoClient for interacting with Alor Broker API.
    *
    * @param property Integration properties including API URL.
-   * @param restClientProvider RestClient for send HTTP request.
+   * @param restClientProvider provider of restClient for send HTTP request.
    * @return A configured AlorClient.
    */
   @Bean

@@ -20,7 +20,7 @@ public class AlorInstrumentInfoClient {
   /**
    * Initializes the instrument info client with required dependencies.
    *
-   * @param restClientProvider authenticated HTTP client for Alor API
+   * @param restClientProvider provider of authenticated HTTP client for Alor API
    * @param alorIntegrationProperty configuration properties (e.g. API base URL, fallback values)
    */
   public AlorInstrumentInfoClient(
