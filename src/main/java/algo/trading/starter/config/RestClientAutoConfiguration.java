@@ -1,9 +1,11 @@
 package algo.trading.starter.config;
 
+import algo.trading.starter.client.AlorAuthClient;
 import algo.trading.starter.exception.handler.AlorIntegrationErrorHandler;
 import algo.trading.starter.service.AlorTokenStorageService;
 import algo.trading.starter.service.RefreshTokenProvider;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import algo.trading.starter.service.RestClientProvider;
+import java.util.function.Function;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -22,36 +24,53 @@ public class RestClientAutoConfiguration {
    *
    * @return plain RestClient instance
    */
-  @Bean(name = "alorRestClient")
-  public RestClient restClient() {
+  @Bean
+  public RestClient alorRestClient() {
     return RestClient.builder().defaultStatusHandler(new AlorIntegrationErrorHandler()).build();
   }
 
   /**
-   * RestClient with authentication headers for Alor broker API requests. Automatically refreshes
-   * the token and retries on 401 Unauthorized responses.
+   * RestClientProvider instance.
    *
-   * @param tokenService service that provides and refreshes access tokens
-   * @return configured authenticated RestClient for Alor
+   * @param restClientFactory bean
+   * @param refreshTokenProvider bean
+   * @return configured RestClientProvider
    */
-  @Bean(name = "alorAuthRestClient")
-  public RestClient alorAuthRestClient(AlorTokenStorageService tokenService,
-                                       RefreshTokenProvider refreshTokenProvider) {
+  @Bean
+  public RestClientProvider restClientProvider(
+      Function<String, RestClient> restClientFactory, RefreshTokenProvider refreshTokenProvider) {
+    return new RestClientProvider(restClientFactory, refreshTokenProvider);
+  }
+
+  /**
+   * RestClientFactory instance.
+   *
+   * @param alorAuthClient rest client bean
+   * @return configured restClientFactory
+   */
+  @Bean
+  public Function<String, RestClient> restClientFactory(AlorAuthClient alorAuthClient) {
+    return refreshToken -> getRestClient(alorAuthClient, refreshToken);
+  }
+
+  private RestClient getRestClient(AlorAuthClient alorAuthClient, String refreshToken) {
     return RestClient.builder()
-        .requestInterceptor(createAuthInterceptor(tokenService, refreshTokenProvider))
+        .requestInterceptor(
+            createAuthInterceptor(new AlorTokenStorageService(alorAuthClient, refreshToken)))
         .defaultStatusHandler(new AlorIntegrationErrorHandler())
         .build();
   }
 
   private ClientHttpRequestInterceptor createAuthInterceptor(
-      AlorTokenStorageService alorTokenStorageService, RefreshTokenProvider refreshTokenProvider) {
+      AlorTokenStorageService alorTokenStorageService) {
     return ((request, body, execution) -> {
       String token = alorTokenStorageService.getAccessToken();
       request.getHeaders().set(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + token);
 
       ClientHttpResponse response = execution.execute(request, body);
+
       if (response.getStatusCode() == HttpStatus.UNAUTHORIZED) {
-        alorTokenStorageService.refreshAccessToken(refreshTokenProvider.getRefreshToken());
+        alorTokenStorageService.refreshAccessToken();
         String refreshedToken = alorTokenStorageService.getAccessToken();
         request.getHeaders().set(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + refreshedToken);
         response = execution.execute(request, body);

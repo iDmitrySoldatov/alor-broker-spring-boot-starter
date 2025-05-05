@@ -24,5 +24,4 @@ public class AlorIntegrationProperty {
   public void setApiUrl(String apiUrl) {
     this.apiUrl = apiUrl;
   }
-
 }

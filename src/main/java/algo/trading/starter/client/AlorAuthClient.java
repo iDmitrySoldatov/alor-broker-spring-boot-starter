@@ -14,11 +14,11 @@ public class AlorAuthClient {
    * Constructs a new instance of AlorAuthClient.
    *
    * @param property the integration properties containing configuration, including the auth URL
-   * @param restClient the RestClient used to send HTTP requests to Alor
+   * @param alorRestClient the RestClient used to send HTTP requests to Alor
    */
-  public AlorAuthClient(AlorIntegrationProperty property, RestClient restClient) {
+  public AlorAuthClient(AlorIntegrationProperty property, RestClient alorRestClient) {
     this.property = property;
-    this.restClient = restClient;
+    this.restClient = alorRestClient;
   }
 
   /**
