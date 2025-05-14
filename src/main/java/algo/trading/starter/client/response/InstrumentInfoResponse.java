@@ -2,7 +2,6 @@ package algo.trading.starter.client.response;
 
 import algo.trading.starter.client.common.AlorCurrency;
 import algo.trading.starter.client.common.AlorExchange;
-import algo.trading.starter.client.common.InstrumentType;
 import algo.trading.starter.client.common.MarketCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
@@ -33,7 +32,7 @@ public class InstrumentInfoResponse {
   private MarketCode market;
 
   /** Instrument type. */
-  private InstrumentType type;
+  private String type;
 
   /** Size of one lot. */
   @JsonProperty("lotsize")
