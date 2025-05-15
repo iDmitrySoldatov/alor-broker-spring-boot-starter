@@ -9,26 +9,16 @@ import algo.trading.starter.client.response.CreateOrderResponse;
 import algo.trading.starter.config.AlorIntegrationProperty;
 import algo.trading.starter.service.RestClientProvider;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 
 /** Client for placing exchange orders via Alor trading API. */
+@RequiredArgsConstructor
 public class AlorExchangeOrdersClient {
   private static final String X_REQID = "X-REQID";
 
   private final RestClientProvider restClientProvider;
   private final AlorIntegrationProperty alorIntegrationProperty;
-
-  /**
-   * Initializes the exchange orders client with required dependencies.
-   *
-   * @param restClientProvider provider of authenticated HTTP client for Alor API
-   * @param alorIntegrationProperty configuration properties (e.g. API base URL, fallback values)
-   */
-  public AlorExchangeOrdersClient(
-      RestClientProvider restClientProvider, AlorIntegrationProperty alorIntegrationProperty) {
-    this.restClientProvider = restClientProvider;
-    this.alorIntegrationProperty = alorIntegrationProperty;
-  }
 
   /**
    * Creates a market order by sending a request to the Alor trading API.

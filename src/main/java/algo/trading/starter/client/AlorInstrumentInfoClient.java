@@ -11,23 +11,13 @@ import algo.trading.starter.client.response.InstrumentInfoResponse;
 import algo.trading.starter.config.AlorIntegrationProperty;
 import algo.trading.starter.service.RestClientProvider;
 import java.net.URI;
+import lombok.RequiredArgsConstructor;
 
 /** Client for receive information about instruments. */
+@RequiredArgsConstructor
 public class AlorInstrumentInfoClient {
   private final RestClientProvider restClientProvider;
   private final AlorIntegrationProperty alorIntegrationProperty;
-
-  /**
-   * Initializes the instrument info client with required dependencies.
-   *
-   * @param restClientProvider provider of authenticated HTTP client for Alor API
-   * @param alorIntegrationProperty configuration properties (e.g. API base URL, fallback values)
-   */
-  public AlorInstrumentInfoClient(
-      RestClientProvider restClientProvider, AlorIntegrationProperty alorIntegrationProperty) {
-    this.restClientProvider = restClientProvider;
-    this.alorIntegrationProperty = alorIntegrationProperty;
-  }
 
   /**
    * Get info about instrument.

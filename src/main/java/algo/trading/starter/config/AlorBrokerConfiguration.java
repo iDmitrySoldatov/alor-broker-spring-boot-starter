@@ -32,13 +32,13 @@ public class AlorBrokerConfiguration {
    * Configures AlorSecurityInfoClient for interacting with Alor Broker API.
    *
    * @param property Integration properties including API URL.
-   * @param restClientProvider provider of restClient for send HTTP request.
+   * @param alorRestClient restClient for send HTTP request.
    * @return A configured AlorClient.
    */
   @Bean
   public AlorSecurityInfoClient alorSecurityInfoClient(
-      AlorIntegrationProperty property, RestClient restClientProvider) {
-    return new AlorSecurityInfoClient(restClientProvider, property);
+      AlorIntegrationProperty property, RestClient alorRestClient) {
+    return new AlorSecurityInfoClient(alorRestClient, property);
   }
 
   /**
