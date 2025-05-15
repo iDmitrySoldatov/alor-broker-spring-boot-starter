@@ -16,29 +16,17 @@ import algo.trading.starter.client.request.MarketHistoryRequest;
 import algo.trading.starter.client.response.MarketHistoryResponse;
 import algo.trading.starter.config.AlorIntegrationProperty;
 import java.net.URI;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.client.RestClient;
 
 /**
  * Client for interacting with Alor API to fetch various data for financial instruments, including
  * market history, trades, quotes, and other instrument-related information.
  */
+@RequiredArgsConstructor
 public class AlorSecurityInfoClient {
   private final RestClient alorRestClient;
   private final AlorIntegrationProperty alorIntegrationProperty;
-
-  /**
-   * Constructor to initialize the client with necessary dependencies.
-   *
-   * @param alorRestClient the RestClient used to send HTTP requests
-   * @param alorIntegrationProperty configuration properties for Alor API
-   */
-  public AlorSecurityInfoClient(
-      @Qualifier("alorRestClient") RestClient alorRestClient,
-      AlorIntegrationProperty alorIntegrationProperty) {
-    this.alorRestClient = alorRestClient;
-    this.alorIntegrationProperty = alorIntegrationProperty;
-  }
 
   /**
    * Retrieves market history data based on the provided request.
