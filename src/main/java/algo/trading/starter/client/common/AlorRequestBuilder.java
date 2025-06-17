@@ -10,19 +10,18 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class AlorRequestBuilder {
   private final UriComponentsBuilder builder;
 
-  private AlorRequestBuilder(String baseUrl, String path) {
-    this.builder = UriComponentsBuilder.newInstance().uri(URI.create(baseUrl + path));
+  private AlorRequestBuilder(String path) {
+    this.builder = UriComponentsBuilder.fromPath(path);
   }
 
   /**
    * Creates a new instance of {@link AlorRequestBuilder} with the specified base URL and path.
    *
-   * @param baseUrl the base URL
    * @param path the path to append to the base URL
    * @return a new instance of {@link AlorRequestBuilder}
    */
-  public static AlorRequestBuilder from(String baseUrl, String path) {
-    return new AlorRequestBuilder(baseUrl, path);
+  public static AlorRequestBuilder from(String path) {
+    return new AlorRequestBuilder(path);
   }
 
   /**

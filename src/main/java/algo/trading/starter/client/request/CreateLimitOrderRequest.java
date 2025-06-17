@@ -18,7 +18,7 @@ public class CreateLimitOrderRequest {
   private Side side;
 
   /* Quantity in lots. Example: 1 */
-  private int quantity;
+  private Integer quantity;
 
   /* Price for create order. */
   private BigDecimal price;
@@ -36,7 +36,7 @@ public class CreateLimitOrderRequest {
   private TimeInForce timeInForce;
 
   /* Allow margin trading. Must be true for uncovered positions. */
-  private boolean allowMargin;
+  private Boolean allowMargin;
 
   /* The visible constant part of the iceberg order in lots set out at the order creation. */
   private Integer icebergFixed;

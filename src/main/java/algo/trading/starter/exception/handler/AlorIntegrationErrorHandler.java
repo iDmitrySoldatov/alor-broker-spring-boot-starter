@@ -5,6 +5,8 @@ import algo.trading.starter.exception.AlorClientException;
 import algo.trading.starter.exception.AlorDataValidationException;
 import algo.trading.starter.exception.AlorServerException;
 import algo.trading.starter.exception.AlorUnknownException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.net.URI;
 import org.springframework.http.HttpMethod;
@@ -17,6 +19,8 @@ import org.springframework.web.client.ResponseErrorHandler;
  * and server-side (5xx) errors, and throwing custom exceptions based on the status code.
  */
 public class AlorIntegrationErrorHandler implements ResponseErrorHandler {
+  private static final ObjectMapper MAPPER = new ObjectMapper();
+
   /**
    * Checks if the HTTP response contains an error.
    *
@@ -53,8 +57,14 @@ public class AlorIntegrationErrorHandler implements ResponseErrorHandler {
     HttpStatusCode statusCode = response.getStatusCode();
     String responseBody = new String(response.getBody().readAllBytes());
     int status = statusCode.value();
-    String message = String.format("HTTP %d Error. Response: %s", status, responseBody);
-
+    String responseMessage;
+    try {
+      JsonNode jsonNode = MAPPER.readTree(responseBody);
+      responseMessage = jsonNode.has("message") ? jsonNode.get("message").asText() : responseBody;
+    } catch (Exception e) {
+      responseMessage = responseBody;
+    }
+    String message = String.format("HTTP %d Error. Message: %s", status, responseMessage);
     switch (status) {
       case 400 -> throw new AlorDataValidationException("Bad request (400). " + message);
       case 401 -> throw new AlorAuthException("Unauthorized (401). " + message);

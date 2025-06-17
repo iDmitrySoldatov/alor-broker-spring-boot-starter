@@ -30,7 +30,7 @@ public class MarketHistoryRequest {
    *
    * Example: 1549000661
    */
-  private long from;
+  private Long from;
 
   /*
    * The end of the time range for which market history data is requested.
@@ -39,7 +39,7 @@ public class MarketHistoryRequest {
    *
    * Example: 1550060661
    */
-  private long to;
+  private Long to;
 
   /*
    * Minimum number of candles to be returned by the server for the requested time range.

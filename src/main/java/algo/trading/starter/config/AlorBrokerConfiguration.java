@@ -3,6 +3,8 @@ package algo.trading.starter.config;
 import algo.trading.starter.client.AlorAuthClient;
 import algo.trading.starter.client.AlorConditionalOrdersClient;
 import algo.trading.starter.client.AlorExchangeOrdersClient;
+import algo.trading.starter.client.AlorGroupOrdersClient;
+import algo.trading.starter.client.AlorHistoryInfoClient;
 import algo.trading.starter.client.AlorInstrumentInfoClient;
 import algo.trading.starter.client.AlorSecurityInfoClient;
 import algo.trading.starter.service.RestClientProvider;
@@ -31,52 +33,67 @@ public class AlorBrokerConfiguration {
   /**
    * Configures AlorSecurityInfoClient for interacting with Alor Broker API.
    *
-   * @param property Integration properties including API URL.
    * @param alorRestClient restClient for send HTTP request.
    * @return A configured AlorClient.
    */
   @Bean
-  public AlorSecurityInfoClient alorSecurityInfoClient(
-      AlorIntegrationProperty property, RestClient alorRestClient) {
-    return new AlorSecurityInfoClient(alorRestClient, property);
+  public AlorSecurityInfoClient alorSecurityInfoClient(RestClient alorRestClient) {
+    return new AlorSecurityInfoClient(alorRestClient);
+  }
+
+  /**
+   * Configures AlorHistoryInfoClient for interacting with Alor Broker API.
+   *
+   * @param restClientProvider provider of restClient for send HTTP request.
+   * @return A configured AlorClient.
+   */
+  @Bean
+  public AlorHistoryInfoClient alorHistoryInfoClient(RestClientProvider restClientProvider) {
+    return new AlorHistoryInfoClient(restClientProvider);
   }
 
   /**
    * Configures AlorExchangeOrdersClient for interacting with Alor Broker API.
    *
-   * @param property Integration properties including API URL.
    * @param restClientProvider provider of restClient for send HTTP request.
    * @return A configured AlorClient.
    */
   @Bean
-  public AlorExchangeOrdersClient alorExchangeOrdersClient(
-      AlorIntegrationProperty property, RestClientProvider restClientProvider) {
-    return new AlorExchangeOrdersClient(restClientProvider, property);
+  public AlorExchangeOrdersClient alorExchangeOrdersClient(RestClientProvider restClientProvider) {
+    return new AlorExchangeOrdersClient(restClientProvider);
   }
 
   /**
    * Configures AlorConditionalOrdersClient for interacting with Alor Broker API.
    *
-   * @param property Integration properties including API URL.
    * @param restClientProvider provider of restClient for send HTTP request.
    * @return A configured AlorClient.
    */
   @Bean
   public AlorConditionalOrdersClient alorConditionalOrdersClient(
-      AlorIntegrationProperty property, RestClientProvider restClientProvider) {
-    return new AlorConditionalOrdersClient(restClientProvider, property);
+      RestClientProvider restClientProvider) {
+    return new AlorConditionalOrdersClient(restClientProvider);
   }
 
   /**
    * Configures AlorInstrumentInfoClient for interacting with Alor Broker API.
    *
-   * @param property Integration properties including API URL.
    * @param restClientProvider provider of restClient for send HTTP request.
    * @return A configured AlorClient.
    */
   @Bean
-  public AlorInstrumentInfoClient alorInstrumentInfoClient(
-      AlorIntegrationProperty property, RestClientProvider restClientProvider) {
-    return new AlorInstrumentInfoClient(restClientProvider, property);
+  public AlorInstrumentInfoClient alorInstrumentInfoClient(RestClientProvider restClientProvider) {
+    return new AlorInstrumentInfoClient(restClientProvider);
+  }
+
+  /**
+   * Configures AlorGroupOrdersClient for interacting with Alor Broker API.
+   *
+   * @param restClientProvider provider of restClient for send HTTP request.
+   * @return A configured AlorClient.
+   */
+  @Bean
+  public AlorGroupOrdersClient alorGroupOrdersClient(RestClientProvider restClientProvider) {
+    return new AlorGroupOrdersClient(restClientProvider);
   }
 }

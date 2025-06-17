@@ -36,7 +36,7 @@ public class CreateStopOrderRequest {
   private AlorUser user;
 
   /* Allow margin trading. Must be true for uncovered positions. */
-  private boolean allowMargin;
+  private Boolean allowMargin;
 
   /* Protective time. Continuous period of time in seconds; during which
    * the market price of the instrument must satisfy the price and triggering

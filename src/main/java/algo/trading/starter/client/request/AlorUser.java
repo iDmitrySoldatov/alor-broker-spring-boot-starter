@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AlorUser {
   /* Unique portfolio ID. Example: "D39004" */
-  String portfolio;
+  private String portfolio;
 }

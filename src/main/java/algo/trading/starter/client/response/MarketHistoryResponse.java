@@ -29,7 +29,7 @@ public class MarketHistoryResponse {
    *
    * Example: 1532944860
    */
-  private long next;
+  private Long next;
 
   /*
    * Timestamp of the previous available period in Unix time format. This value is used
@@ -38,5 +38,5 @@ public class MarketHistoryResponse {
    *
    * Example: 1532944860
    */
-  private long prev;
+  private Long prev;
 }
