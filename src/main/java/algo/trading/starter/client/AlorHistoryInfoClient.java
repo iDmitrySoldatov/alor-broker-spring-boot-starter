@@ -14,17 +14,17 @@ import static algo.trading.starter.client.common.AlorQueryParam.UNTRADED;
 import algo.trading.starter.client.common.AlorRequestBuilder;
 import algo.trading.starter.client.request.MarketHistoryRequest;
 import algo.trading.starter.client.response.MarketHistoryResponse;
+import algo.trading.starter.service.RestClientProvider;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.client.RestClient;
 
 /**
- * Public API client for interacting with Alor API to fetch various data for financial instruments,
- * including market history, trades, quotes, and other instrument-related information.
+ * Authenticated API client for interacting with Alor API to fetch various data for financial
+ * instruments, including market history, trades, quotes, and other instrument-related information.
  */
 @RequiredArgsConstructor
-public class AlorSecurityInfoClient {
-  private final RestClient alorRestClient;
+public class AlorHistoryInfoClient {
+  private final RestClientProvider restClientProvider;
 
   /**
    * Retrieves market history data based on the provided request.
@@ -46,6 +46,11 @@ public class AlorSecurityInfoClient {
             .with(FORMAT, request.getFormat())
             .build();
 
-    return alorRestClient.get().uri(uri).retrieve().body(MarketHistoryResponse.class);
+    return restClientProvider
+        .getRestClient()
+        .get()
+        .uri(uri)
+        .retrieve()
+        .body(MarketHistoryResponse.class);
   }
 }

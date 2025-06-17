@@ -20,7 +20,7 @@ public class HistoryEntry {
    *
    * Example: 1620220020
    */
-  private long time;
+  private Long time;
 
   /*
    * The closing price for the period.
@@ -55,5 +55,5 @@ public class HistoryEntry {
    *
    * Example: 13544356235
    */
-  private long volume;
+  private Long volume;
 }

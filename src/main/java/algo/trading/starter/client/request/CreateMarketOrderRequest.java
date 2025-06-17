@@ -17,7 +17,7 @@ public class CreateMarketOrderRequest {
   private Side side;
 
   /* Quantity in lots. Example: 1 */
-  private int quantity;
+  private Integer quantity;
 
   /* Instrument information including symbol; exchange; and group. */
   private AlorInstrument instrument;
@@ -32,5 +32,5 @@ public class CreateMarketOrderRequest {
   private TimeInForce timeInForce;
 
   /* Allow margin trading. Must be true for uncovered positions. */
-  private boolean allowMargin;
+  private Boolean allowMargin;
 }
