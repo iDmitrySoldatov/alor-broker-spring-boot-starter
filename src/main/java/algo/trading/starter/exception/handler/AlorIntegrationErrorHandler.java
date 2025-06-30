@@ -66,16 +66,15 @@ public class AlorIntegrationErrorHandler implements ResponseErrorHandler {
     }
     String message = String.format("HTTP %d Error. Message: %s", status, responseMessage);
     switch (status) {
-      case 400 -> throw new AlorDataValidationException("Bad request (400). " + message);
-      case 401 -> throw new AlorAuthException("Unauthorized (401). " + message);
-      case 403 -> throw new AlorAuthException("Forbidden (403). " + message);
+      case 400 -> throw new AlorDataValidationException(message);
+      case 401, 403 -> throw new AlorAuthException(message);
       default -> {
         if (statusCode.is4xxClientError()) {
-          throw new AlorClientException("Client error. " + message);
+          throw new AlorClientException(message);
         } else if (statusCode.is5xxServerError()) {
-          throw new AlorServerException("Server error. " + message);
+          throw new AlorServerException(message);
         } else {
-          throw new AlorUnknownException("Unknown error. " + message);
+          throw new AlorUnknownException(message);
         }
       }
     }

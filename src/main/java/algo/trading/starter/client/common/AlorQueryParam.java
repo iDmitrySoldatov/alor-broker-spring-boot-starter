@@ -16,7 +16,9 @@ public enum AlorQueryParam {
   SPLIT_ADJUST("splitAdjust"),
   FORMAT("format"),
   INSTRUMENT_GROUP("instrumentGroup"),
-  JSON_RESPONSE("jsonResponse");
+  JSON_RESPONSE("jsonResponse"),
+  PORTFOLIO("portfolio"),
+  STOP("stop");
 
   private final String param;
 
