@@ -1,6 +1,7 @@
 package algo.trading.starter.config;
 
 import algo.trading.starter.client.AlorAuthClient;
+import algo.trading.starter.client.AlorClientInfoClient;
 import algo.trading.starter.client.AlorConditionalOrdersClient;
 import algo.trading.starter.client.AlorExchangeOrdersClient;
 import algo.trading.starter.client.AlorGroupOrdersClient;
@@ -95,5 +96,16 @@ public class AlorBrokerConfiguration {
   @Bean
   public AlorGroupOrdersClient alorGroupOrdersClient(RestClientProvider restClientProvider) {
     return new AlorGroupOrdersClient(restClientProvider);
+  }
+
+  /**
+   * Configures AlorClientInfoClient for interacting with Alor Broker API.
+   *
+   * @param restClientProvider provider of restClient for send HTTP request.
+   * @return A configured AlorClient.
+   */
+  @Bean
+  public AlorClientInfoClient alorClientInfoClient(RestClientProvider restClientProvider) {
+    return new AlorClientInfoClient(restClientProvider);
   }
 }

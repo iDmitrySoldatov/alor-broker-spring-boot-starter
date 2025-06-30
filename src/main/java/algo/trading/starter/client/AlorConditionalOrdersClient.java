@@ -1,14 +1,18 @@
 package algo.trading.starter.client;
 
 import static algo.trading.starter.client.common.AlorApiPath.CREATE_STOP_ORDER;
+import static algo.trading.starter.client.common.AlorApiPath.DELETE_CONDITIONAL_ORDER;
 import static algo.trading.starter.client.common.AlorApiPath.GET_CONDITIONAL_ORDER;
+import static java.text.MessageFormat.format;
 
 import algo.trading.starter.client.common.AlorExchange;
+import algo.trading.starter.client.common.AlorQueryParam;
+import algo.trading.starter.client.common.AlorRequestBuilder;
 import algo.trading.starter.client.request.CreateStopOrderRequest;
 import algo.trading.starter.client.response.CreateOrderResponse;
 import algo.trading.starter.client.response.GetConditionalOrderResponse;
 import algo.trading.starter.service.RestClientProvider;
-import java.text.MessageFormat;
+import java.net.URI;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -57,8 +61,28 @@ public class AlorConditionalOrdersClient {
     return restClientProvider
         .getRestClient()
         .get()
-        .uri(MessageFormat.format(GET_CONDITIONAL_ORDER.path(), exchange, portfolio, orderId))
+        .uri(format(GET_CONDITIONAL_ORDER.path(), exchange, portfolio, orderId))
         .retrieve()
         .body(GetConditionalOrderResponse.class);
+  }
+
+  /**
+   * Delete conditional order by sending a request to the Alor trading API.
+   *
+   * <p>The client must provide all necessary fields in the request. If any required fields are
+   * missing, the request will be invalid.
+   *
+   * @param exchange the exchange
+   * @param portfolio the portfolio
+   * @param orderId the orderId
+   */
+  public void deleteStopOrder(AlorExchange exchange, String portfolio, String orderId) {
+    URI uri =
+        AlorRequestBuilder.from(format(DELETE_CONDITIONAL_ORDER.path(), orderId))
+            .with(AlorQueryParam.EXCHANGE, exchange.name())
+            .with(AlorQueryParam.PORTFOLIO, portfolio)
+            .with(AlorQueryParam.STOP, Boolean.TRUE.toString())
+            .build();
+    restClientProvider.getRestClient().delete().uri(uri).retrieve().body(Void.class);
   }
 }
