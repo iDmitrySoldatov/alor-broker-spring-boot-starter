@@ -70,6 +70,6 @@ public class AlorGroupOrdersClient {
         .delete()
         .uri(format(ORDER_GROUP_BY_ID.path(), groupId))
         .retrieve()
-        .body(Void.class);
+        .body(String.class);
   }
 }
