@@ -83,6 +83,6 @@ public class AlorConditionalOrdersClient {
             .with(AlorQueryParam.PORTFOLIO, portfolio)
             .with(AlorQueryParam.STOP, Boolean.TRUE.toString())
             .build();
-    restClientProvider.getRestClient().delete().uri(uri).retrieve().toEntity(Void.class);
+    restClientProvider.getRestClient().delete().uri(uri).retrieve().toEntity(String.class);
   }
 }
