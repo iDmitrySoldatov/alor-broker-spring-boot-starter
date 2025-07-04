@@ -22,7 +22,7 @@ public enum AlorApiPath {
   GET_ALL_POSITION(SECURITY_INFO_BASE.path() + "/Clients/{0}/{1}/positions"),
   GET_TRADES(SECURITY_INFO_BASE.path() + "/Clients/{0}/{1}/{2}/trades"),
   GET_TRADES_HISTORY(SECURITY_INFO_BASE.path() + "/Stats/{0}/{1}/history/trades/{2}"),
-  DELETE_CONDITIONAL_ORDER("/commandapi/warptrans/TRADE/v2/client/orders/{}");
+  DELETE_CONDITIONAL_ORDER("/commandapi/warptrans/TRADE/v2/client/orders/{0}");
 
   private final String path;
 
