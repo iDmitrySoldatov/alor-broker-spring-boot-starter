@@ -3,6 +3,7 @@ package algo.trading.starter.exception.handler;
 import algo.trading.starter.exception.AlorAuthException;
 import algo.trading.starter.exception.AlorClientException;
 import algo.trading.starter.exception.AlorDataValidationException;
+import algo.trading.starter.exception.AlorNotFoundException;
 import algo.trading.starter.exception.AlorServerException;
 import algo.trading.starter.exception.AlorUnknownException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -50,6 +51,7 @@ public class AlorIntegrationErrorHandler implements ResponseErrorHandler {
    * @throws AlorClientException if a general client error occurred (4xx)
    * @throws AlorServerException if a server error occurred (5xx)
    * @throws AlorUnknownException if an unknown error occurred
+   * @throws AlorNotFoundException if no object found
    */
   @Override
   public void handleError(URI url, HttpMethod method, ClientHttpResponse response)
@@ -67,6 +69,7 @@ public class AlorIntegrationErrorHandler implements ResponseErrorHandler {
     String message = String.format("HTTP %d Error. Message: %s", status, responseMessage);
     switch (status) {
       case 400 -> throw new AlorDataValidationException(message);
+      case 404 -> throw new AlorNotFoundException(message);
       case 401, 403 -> throw new AlorAuthException(message);
       default -> {
         if (statusCode.is4xxClientError()) {
