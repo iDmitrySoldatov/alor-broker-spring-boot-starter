@@ -125,6 +125,8 @@ public class RestClientAutoConfiguration {
 
       ClientHttpResponse response = execution.execute(request, body);
 
+      log.trace("Status code - {}", response.getStatusCode().value());
+
       if (response.getStatusCode() == HttpStatus.UNAUTHORIZED) {
         alorTokenStorageService.refreshAccessToken();
         String refreshedToken = alorTokenStorageService.getAccessToken();
@@ -142,7 +144,7 @@ public class RestClientAutoConfiguration {
     if (Objects.isNull(exp)) {
       return false;
     }
-    return Instant.now().isBefore(Instant.ofEpochSecond(Long.parseLong(exp) + 10));
+    return Instant.now().isAfter(Instant.ofEpochSecond(Long.parseLong(exp) + 10));
   }
 
   private Map<String, String> getBodyMap(String token) {
