@@ -17,7 +17,7 @@ public enum AlorApiPath {
   ESTIMATE_MARKET_ORDER("/commandapi/warptrans/TRADE/v2/client/orders/estimate"),
   ORDER_GROUP_BASE("/commandapi/api/orderGroups"),
   ORDER_GROUP_BY_ID(ORDER_GROUP_BASE.path() + "/{0}"),
-  GET_MARKET_ORDER(EXCHANGE_ORDER_BASE.path() + "/Clients/{0}/{1}/orders/{2}"),
+  GET_MARKET_ORDER(SECURITY_INFO_BASE.path() + "/Clients/{0}/{1}/orders/{2}"),
   GET_CONDITIONAL_ORDER(SECURITY_INFO_BASE.path() + "/Clients/{0}/{1}/stoporders/{2}"),
   GET_ALL_POSITION(SECURITY_INFO_BASE.path() + "/Clients/{0}/{1}/positions"),
   GET_TRADES(SECURITY_INFO_BASE.path() + "/Clients/{0}/{1}/{2}/trades"),
